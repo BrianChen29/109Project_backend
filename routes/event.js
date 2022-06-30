@@ -52,16 +52,18 @@ router.get('/createevent', function(req, res){
 
 //新增資料
 router.post('/createevent', function(req, res, next){
+    var today=new Date();
+
     const evename = req.body.evename;
     const issname = req.body.issname;
     const helpname = req.body.helpname;
     const state = req.body.evestate;
     const type = req.body.evetype;
     const loc = req.body.loc;
-    const date = req.body.date;
+    const point = req.body.point;
 
 
-    event.create({ eveName: evename, issName: issname, helpName: "", eveState: false, eveType: type, eveLoc: loc, eveDate: date},(err)=>{
+    event.create({ eveName: evename, eveIssuerName: issname, eveHelperName: helpname, eveState: false, eveType: type, eveLoc: loc, eveDate: today, evePoint: point},(err)=>{
         if(err){
             console.log(err);
             res.send(err);
